@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+@* CSIQ3734 (2024) - Assignment 1 *@
+@* FZ. Maduna 2020794851 *@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EMS</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" asp-href-include="/lib/bootstrap/css/bootstrap.min.css" />
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" asp-href-include="/lib/font-awesome/css/all.min.css" />
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" asp-href-include="/styles/custom.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-sm border-bottom bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-action="Index" asp-controller="Event">
+                Event Management System
+            </a>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#MainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="MainNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Event">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-link">Hello, @User.Identity.Name </li>
+                        <li class="nav-item">
+                            <form asp-controller="Account" asp-action="Logout" method="post">
+                                <button type="submit" class="btn btn-link nav-link">Log Out</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-action="Register" asp-controller="Account" class="nav-link">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="Login" asp-controller="Account" class="nav-link">Log in</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="container p-3 bg-light">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="container border-top text-muted text-center">
+        <p>FZ. MADUNA (2020794851)</p>
+        <p>
+            &copy; 2024 - UFS (Event Management System)
+        </p>
+        <div>
+            <a asp-action="Index" asp-controller="Event" class="text-muted">
+                <i class="fas fa-calendar-day"></i>
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script asp-src-include="/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

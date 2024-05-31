@@ -1,0 +1,37 @@
+﻿@model Event
+
+<h2>@Model.EventTitle</h2>
+
+<p>
+    <strong>@Html.DisplayNameFor(model => model.EventDescription):</strong>
+    @Model.EventDescription   
+</p>
+<p>
+    <strong>@Html.DisplayNameFor(model => model.EventStartDate):</strong> 
+    @Model.EventStartDate.ToShortDateString()
+    
+</p>
+<p>
+    @if (Model.EventEndDate.HasValue)
+    {
+        <strong>@Html.DisplayNameFor(model => model.EventEndDate):</strong>
+        @Model.EventEndDate.Value.ToShortDateString()
+    }
+
+</p>
+<p>
+    <strong>@Html.DisplayNameFor(model => model.EventLocation):</strong>:
+    @Model.EventLocation</p>
+<p>
+    <strong>Available spots:</strong>
+
+    @if (Model.EventRegistrations < Model.EventMaxAttendees)
+    {
+        <span>@(Model.EventMaxAttendees - Model.EventRegistrations)</span>
+    }
+    else
+    {
+        <span class="text-danger">Full</span>
+    }
+</p>
+

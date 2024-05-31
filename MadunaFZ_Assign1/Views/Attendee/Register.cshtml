@@ -1,0 +1,30 @@
+﻿@model Attendee
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Event Registration</h2>
+<hr />
+
+<form asp-action="Register" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="EventId"/>
+
+    <div class="mb-3">
+        <label asp-for="AttendeeName" class="form-label"></label>
+        <input asp-for="AttendeeName" class="form-control" />
+        <span asp-validation-for="AttendeeName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="AttendeeEmail" class="form-label"></label>
+        <input asp-for="AttendeeEmail" class="form-control" />
+        <span asp-validation-for="AttendeeEmail" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" value="Complete Registration" class="btn btn-primary" />
+        <a asp-controller="Event" asp-action="Details" asp-route-id="@Model.EventId" class="btn btn-outline-primary">Back to Event Details</a>
+    </div>
+</form>
